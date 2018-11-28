@@ -1,0 +1,75 @@
+@CHARSET "UTF-8";
+
+#main{
+	position:relative;
+	text-align:center;
+	font-family:sans-serif;
+	white-space: nowrap;
+	overflow: hidden ;
+}
+
+table{
+	float:left;
+	margin-top:30px;
+	margin-left:15%;
+	width:40%;
+	cellspacing:0;
+	borderspacing:0;
+}
+
+
+#right{
+	display:inline-block;
+	margin-top:30px;
+	width:50%;
+	text-align:left;
+	white-space: nowrap;
+}
+
+.name{
+	color:blue;
+	font-size:140%;
+	margin-bottom:3px;
+	align:left;
+}
+.namekana{
+	color:blue;
+	margin-left:20%;
+	font-size:100%;
+	align:left;
+}
+.price{
+	align:left;
+	color:red;
+	font-size:140%;
+}
+.text{
+	margin-bottom:1em;
+}
+.total{
+	align:left;
+	font-size:140%;
+	margin-top:15px;
+}
+
+p.box {
+	clear:both;
+	width:800px;
+	margin:0 auto;
+	border-bottom: 1px solid black;
+	padding:10px;
+}
+
+h2{
+	clear:both;
+	color:red;
+	text-align:center;
+	font-size:170%;
+	margin-top:30px;
+	font-family:Meiryo,sans-serif;
+}
+
+.info{
+	font-family:Meiryo,sans-serif;
+	margin-left:100px;
+}
