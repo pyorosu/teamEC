@@ -3,6 +3,7 @@ package com.internousdev.casablanca.action;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -35,18 +36,22 @@ public class SearchItemAction extends ActionSupport implements SessionAware{
 		switch(categoryId){
 			/* 「全て」のカテゴリを選択した場合 */
 			case "1":
+				//半角スペースのみで検索した場合は全件検索
 				if (keywords.equals(" ")) {
 					productInfoDtoList = productInfoDAO.getProductList();
+				//それ以外の場合は、半角スペース区切りにしてOR検索
 				} else {
-					productInfoDtoList = productInfoDAO.getProductInfoListAll(keywords.trim().replaceAll("　", " ").split("[\\s]+"));
+					productInfoDtoList = productInfoDAO.getProductInfoListAll(keywords.replaceAll("　+", " ").trim().split("[\\s]+"));
 				}
 				break;
 			/* それ以外のカテゴリを個別選択した場合 */
 			default:
 				if (keywords.equals(" ")) {
+				//半角スペースのみで検索した場合は全件検索
 					productInfoDtoList = productInfoDAO.getProductListByCagegoryId(categoryId);
+				//それ以外の場合は、半角スペース区切りにしてOR検索
 				} else {
-					productInfoDtoList = productInfoDAO.getProductInfoListByKeywords(keywords.trim().replaceAll("　", " ").split("[\\s]+"), categoryId);
+					productInfoDtoList = productInfoDAO.getProductInfoListByKeywords(keywords.replaceAll("　+", " ").trim().split("[\\s]+"), categoryId);
 				}
 				break;
 		}
@@ -59,6 +64,9 @@ public class SearchItemAction extends ActionSupport implements SessionAware{
 		MCategoryDAO mCategoryDAO = new MCategoryDAO();
 		List<MCategoryDTO> mCategoryDtoList = mCategoryDAO.getMCategoryList();
 		session.put("mCategoryDtoList", mCategoryDtoList);
+	}
+	if(Objects.equals(session.get("fromCart"), true)) {
+		session.remove("fromCart");
 	}
 	return SUCCESS;
 }
